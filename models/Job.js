@@ -1,4 +1,4 @@
-const Sequelize = require('express');
+const Sequelize = require('sequelize');
 const db = require('../db/connection');
 
 const Job = db.define('job', {
@@ -13,5 +13,10 @@ const Job = db.define('job', {
     },
     email: {
         type: Sequelize.STRING,
+    },
+    new_job: {
+        type: Sequelize.INTEGER,
     }
 });
+
+module.exports = Job
