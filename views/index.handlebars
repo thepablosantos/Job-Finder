@@ -1,8 +1,13 @@
+<!-- HERO / CABEÇALHO PRINCIPAL -->
 <div class="container mx-auto px-4 py-20 text-center">
-  <h1 class="text-4xl font-bold mb-4">Encontre o emprego dos seus sonhos</h1>
+  <h1 class="text-4xl font-bold mb-4">
+    Encontre o emprego dos seus sonhos
+  </h1>
   <p class="text-gray-400 text-lg mb-8">
     Somos o site com mais vagas de tecnologia no mercado, direcionadas a home office
   </p>
+
+  <!-- Form de Busca -->
   <form
     id="search-form"
     class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-2xl mx-auto"
@@ -24,17 +29,26 @@
   </form>
 </div>
 
-<!-- Listagem das vagas -->
-<div class="container mx-auto px-4 pb-20">
+<!-- LISTAGEM DAS VAGAS -->
+<div class="container mx-auto px-4 pb-10">
   {{#if search}}
-    <h2 class="text-2xl font-semibold mb-6">Buscando vagas que contêm: {{search}}</h2>
+    <h2 class="text-2xl font-semibold mb-6">
+      Buscando vagas que contêm: {{search}}
+    </h2>
   {{else}}
-    <h2 class="text-2xl font-semibold mb-6">Veja as nossas vagas em destaque</h2>
+    <h2 class="text-2xl font-semibold mb-6">
+      Veja as nossas vagas em destaque
+    </h2>
   {{/if}}
 
   <ul class="space-y-6">
     {{#each jobs}}
-      <li class="relative bg-gray-800 p-6 rounded flex flex-col md:flex-row md:items-center gap-4">
+      <li 
+        class="relative bg-gray-800 p-6 rounded flex flex-col 
+               md:flex-row md:items-center gap-4 
+               hover:shadow-md hover:shadow-black/40 
+               transition"
+      >
         <!-- Imagem da empresa -->
         <img
           src="/img/company.svg"
@@ -42,28 +56,192 @@
           class="w-20 h-20 object-contain"
         />
 
+        <!-- Texto da vaga -->
         <div class="flex-1">
-          <p class="text-gray-400 text-sm mb-1">{{this.dataValues.company}}</p>
-          <h2 class="text-xl font-bold mb-1">{{this.dataValues.title}}</h2>
+          <p class="text-gray-400 text-sm mb-1">
+            {{this.dataValues.company}}
+          </p>
+          <h2 class="text-xl font-bold mb-1">
+            {{this.dataValues.title}}
+          </h2>
           <p class="text-gray-400 font-semibold mb-2">
             R${{this.dataValues.salary}}
           </p>
         </div>
 
+        <!-- Etiqueta "Novo" -->
         {{#if this.dataValues.new_job}}
           <span 
-            class="absolute top-4 right-4 bg-yellow-300 text-gray-800 text-xs font-bold py-1 px-2 rounded">
+            class="absolute top-4 right-4 bg-yellow-300 
+                   text-gray-800 text-xs font-bold 
+                   py-1 px-2 rounded"
+          >
             Novo
           </span>
         {{/if}}
 
+        <!-- Botão "Ver Vaga" -->
         <a
           href="/jobs/view/{{this.dataValues.id}}"
-          class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded transition self-end md:self-center"
+          class="bg-blue-600 hover:bg-blue-500 text-white 
+                 font-semibold py-2 px-4 rounded 
+                 transition self-end md:self-center"
         >
           Ver vaga
         </a>
       </li>
     {{/each}}
   </ul>
+</div>
+
+<!-- SEÇÃO DE SERVIÇOS EM COLUNAS -->
+<div class="container mx-auto px-4 py-16">
+  <h2 class="text-3xl font-bold text-center mb-12">
+    Services that we continue to improve
+  </h2>
+
+  <!-- Grid para 4 colunas (ajuste sm:, md:, lg: conforme desejar) -->
+  <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+    <!-- Card 1 -->
+    <div class="bg-gray-800 rounded p-6 flex flex-col items-start">
+      <div class="bg-blue-600 text-white p-2 rounded mb-4">
+        <!-- Ícone Heroicons: shield-check -->
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke-width="1.5" 
+          stroke="currentColor" 
+          class="w-8 h-8"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            d="M9 12.75l1.5 1.5L15 9.75m6.75-3.525
+               c0-1.05-.58-2.01-1.5-2.48l-6-3
+               a2.847 2.847 0 00-2.5 0l-6 3
+               a2.783 2.783 0 00-1.5 2.48
+               v3.75c0 6.28 4.975 10.95 9.551 
+               12.845.3.123.649.123.949 0
+               C16.775 23.15 21.75 18.48 21.75 
+               12.225V8.225z" 
+          />
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">
+        Security guaranteed
+      </h3>
+      <p class="text-gray-300">
+        Security is guaranteed. We always maintain privacy 
+        and quality of our products.
+      </p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-gray-800 rounded p-6 flex flex-col items-start">
+      <div class="bg-purple-600 text-white p-2 rounded mb-4">
+        <!-- Ícone Heroicons: currency-dollar -->
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          fill="none"
+          viewBox="0 0 24 24" 
+          stroke-width="1.5" 
+          stroke="currentColor" 
+          class="w-8 h-8"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            d="M12 3v2.25m0 13.5V21m6-8.25
+               c0 1.242-1.007 2.25-2.25 2.25
+               H8.25A2.25 2.25 0 016 12.75
+               c0-1.242 1.007-2.25 2.25-2.25
+               h7.5c1.243 0 2.25-1.008
+               2.25-2.25s-1.007-2.25
+               -2.25-2.25H8.25C7.007 
+               6 6 7.008 6 8.25" 
+          />
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">
+        Best exchange rates
+      </h3>
+      <p class="text-gray-300">
+        We always maintain top exchange rates with fairness.
+      </p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-gray-800 rounded p-6 flex flex-col items-start">
+      <div class="bg-red-600 text-white p-2 rounded mb-4">
+        <!-- Ícone Heroicons: rocket-launch -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke-width="1.5"
+          stroke="currentColor" 
+          class="w-8 h-8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.59 14.37a5.248 
+               5.248 0 01-5.52-5.56
+               L12 3l9 9-4.41 2.37z
+               M12 3c1 1 1 3 0 4s-3 1-4 
+               0 1-3 0-4
+               m0 17c-1-1-3-1-4 0s-1 3 
+               0 4 3 1 4 0 
+               1-3 0-4
+               M12 12c0 1.66-1.34 3-3 3
+               -1.66 0-3-1.34-3-3 
+               s1.34-3 3-3 3 1.34 3 3z"
+          />
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">
+        Fastest transactions
+      </h3>
+      <p class="text-gray-300">
+        Our platform ensures quick responses, even on large scale.
+      </p>
+    </div>
+
+    <!-- Card 4 (opcional) -->
+    <div class="bg-gray-800 rounded p-6 flex flex-col items-start">
+      <div class="bg-green-600 text-white p-2 rounded mb-4">
+        <!-- Ícone Heroicons: currency-dollar (exemplo repetido) -->
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          fill="none"
+          viewBox="0 0 24 24" 
+          stroke-width="1.5" 
+          stroke="currentColor" 
+          class="w-8 h-8"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            d="M12 3v2.25m0 13.5V21m6-8.25
+               c0 1.242-1.007 2.25-2.25 2.25
+               H8.25A2.25 2.25 0 016 12.75
+               c0-1.242 1.007-2.25 2.25-2.25
+               h7.5c1.243 0 2.25-1.008 
+               2.25-2.25s-1.007-2.25
+               -2.25-2.25H8.25C7.007 
+               6 6 7.008 6 8.25" 
+          />
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">
+        Low fees
+      </h3>
+      <p class="text-gray-300">
+        Enjoy some of the lowest fees in the market, 
+        accessible to everyone.
+      </p>
+    </div>
+  </div>
 </div>

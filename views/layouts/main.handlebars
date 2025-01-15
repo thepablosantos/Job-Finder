@@ -4,11 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Job Finder</title>
-    <!-- Tailwind CSS (gerado) -->
+    <!-- Tailwind CSS (gerado em /public/css/styles.css) -->
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
-  <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
-    <header class="bg-gray-900 border-b border-gray-800 p-4 flex justify-between items-center">
+  <body 
+    class="min-h-screen flex flex-col 
+           bg-gradient-to-b from-[#0f0e13] to-[#1d1d2e] 
+           text-gray-100"
+  >
+    <!-- Cabeçalho / Navbar -->
+    <header class="px-4 py-4 flex justify-between items-center border-b border-gray-800">
       <a class="text-xl font-bold" href="/">Job Finder</a>
       <nav>
         <ul class="flex space-x-4">
@@ -18,7 +23,8 @@
           <li>
             <a 
               class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded transition" 
-              href="/jobs/add">
+              href="/jobs/add"
+            >
               Abrir Vaga
             </a>
           </li>
@@ -26,11 +32,13 @@
       </nav>
     </header>
 
+    <!-- CONTEÚDO PRINCIPAL RENDERIZADO -->
     <main class="flex-1">
       {{{ body }}}
     </main>
 
-    <footer class="bg-gray-900 text-gray-500 text-sm p-4 text-center border-t border-gray-800">
+    <!-- RODAPÉ -->
+    <footer class="text-gray-500 text-sm p-4 text-center border-t border-gray-800">
       © 2025 Job Finder - Todos os direitos reservados
     </footer>
   </body>
