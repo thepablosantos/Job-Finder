@@ -1,17 +1,47 @@
-<div id="job-view-container" class="container">
-  <div class="row text-center">
-    <a class="back-link main-color" href="/">Voltar</a>
-    <div id="img-container" class="col-md-12">
-      <img src="/img/company.svg" alt="Company">
+<div class="container mx-auto px-4 py-16">
+  <a
+    class="inline-block mb-8 text-blue-400 hover:text-blue-300 border border-blue-400 rounded px-3 py-1 transition"
+    href="/"
+  >
+    Voltar
+  </a>
+
+  <div class="bg-gray-800 p-8 rounded">
+    <div class="flex flex-col items-center mb-8">
+      <img
+        src="/img/company.svg"
+        alt="Company"
+        class="w-24 h-24 mb-4"
+      />
+      <h1 class="text-3xl font-bold mb-2 text-blue-400">
+        {{job.dataValues.title}}
+      </h1>
     </div>
-    <div class="col-md-12">
-      <h1 class="main-color">{{job.dataValues.title}}</h1>
-      <p class="bold">Quem eles estão buscando:</p>
-      <p class="job-desc">{{job.dataValues.description}}</p>
-      <p><span class="bold">O salário informado é de:</span> R${{job.dataValues.salary}}</p>
-      <p>
-        Para trabalhar na <span class="bold main-color">{{job.dataValues.company}}</span> envie um e-mail para a <a class="main-color" href="mail:to{{job.dataValues.email}}">{{job.dataValues.email}}</a>
-      </p>
-    </div>
+
+    <p class="mb-4">
+      <span class="font-semibold">Quem eles estão buscando:</span>
+    </p>
+    <p class="mb-6 text-gray-300">
+      {{job.dataValues.description}}
+    </p>
+
+    <p class="mb-2">
+      <span class="font-semibold">Salário informado:</span>
+      R${{job.dataValues.salary}}
+    </p>
+
+    <p class="mb-6">
+      Para trabalhar na
+      <span class="text-blue-400 font-semibold">
+        {{job.dataValues.company}}
+      </span>
+      envie um e-mail para
+      <a
+        href="mailto:{{job.dataValues.email}}"
+        class="text-blue-400 hover:underline"
+      >
+        {{job.dataValues.email}}
+      </a>.
+    </p>
   </div>
 </div>

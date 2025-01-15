@@ -1,37 +1,69 @@
-<div id="top-container" class="container-fluid">
-  <h1 id="main-title" class="text-center">Encontre o emprego dos seus sonhos</h1>
-  <p id="main-subtitle" class="text-center">Somos o site com mais vagas de tecnologia no mercado, direcionadas a home office</p>
-  <form id="search-form" class="form-inline" action="/" method="GET">
-    <div class="form-group col-md-10">
-      <input type="text" class="form-control" id="job" name="job" placeholder="Digite a vaga que está buscando">
-    </div>
-    <div class="col-md-2">
-      <button type="submit" class="btn btn-primary">Procurar</button>
-    </div>
+<div class="container mx-auto px-4 py-20 text-center">
+  <h1 class="text-4xl font-bold mb-4">Encontre o emprego dos seus sonhos</h1>
+  <p class="text-gray-400 text-lg mb-8">
+    Somos o site com mais vagas de tecnologia no mercado, direcionadas a home office
+  </p>
+  <form
+    id="search-form"
+    class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-2xl mx-auto"
+    action="/"
+    method="GET"
+  >
+    <input
+      type="text"
+      name="job"
+      placeholder="Digite a vaga que está buscando"
+      class="flex-1 bg-gray-800 text-gray-100 rounded px-4 py-2 placeholder-gray-400 outline-none"
+    />
+    <button
+      type="submit"
+      class="bg-blue-600 hover:bg-blue-500 text-white rounded px-4 py-2 transition"
+    >
+      Procurar
+    </button>
   </form>
 </div>
-<main>
-  <div id="jobs-container" class="container">
-    <div class="row">
-      <div class="col-md-12">
-        {{#if search}}
-          <h2 id="job-list-title">Buscando vagas que contem: {{search}}</h2>
-        {{else}}
-          <h2 id="job-list-title">Veja as nossas vagas em destaque</h2>
+
+<!-- Listagem das vagas -->
+<div class="container mx-auto px-4 pb-20">
+  {{#if search}}
+    <h2 class="text-2xl font-semibold mb-6">Buscando vagas que contêm: {{search}}</h2>
+  {{else}}
+    <h2 class="text-2xl font-semibold mb-6">Veja as nossas vagas em destaque</h2>
+  {{/if}}
+
+  <ul class="space-y-6">
+    {{#each jobs}}
+      <li class="relative bg-gray-800 p-6 rounded flex flex-col md:flex-row md:items-center gap-4">
+        <!-- Imagem da empresa -->
+        <img
+          src="/img/company.svg"
+          alt="Company"
+          class="w-20 h-20 object-contain"
+        />
+
+        <div class="flex-1">
+          <p class="text-gray-400 text-sm mb-1">{{this.dataValues.company}}</p>
+          <h2 class="text-xl font-bold mb-1">{{this.dataValues.title}}</h2>
+          <p class="text-gray-400 font-semibold mb-2">
+            R${{this.dataValues.salary}}
+          </p>
+        </div>
+
+        {{#if this.dataValues.new_job}}
+          <span 
+            class="absolute top-4 right-4 bg-yellow-300 text-gray-800 text-xs font-bold py-1 px-2 rounded">
+            Novo
+          </span>
         {{/if}}
-        <ul id="job-list" class="list-group">
-          {{#each jobs}}
-            <li class="list-group-item {{#if dataValues.new_job }}new-job{{/if}}">
-              <img src="/img/company.svg" alt="Company">
-              <p>{{dataValues.company}}</p>
-              <h2>{{dataValues.title}}</h2>
-              <p>R${{dataValues.salary}}</p>
-              <span class="new-job-label">Nova</span>
-              <a class="btn btn-primary" href="/jobs/view/{{dataValues.id}}">Ver vaga</a>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-</main>
+
+        <a
+          href="/jobs/view/{{this.dataValues.id}}"
+          class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded transition self-end md:self-center"
+        >
+          Ver vaga
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</div>

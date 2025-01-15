@@ -1,35 +1,81 @@
-<div id="add-form-container" class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1 class="text-center">Divulgue a vaga preenchendo o formulário</h1>
-    </div>
-    <div id="form-box" class="col-md-12">
-      <h2>Preencha os dados da melhor forma possível para encontrar mais rápido seu dev!</h2>
-      <form action="/jobs/add" method="POST">
-        <div class="form-group">
-          <label for="title">Título da vaga:</label>
-          <input type="text" class="form-control" id="title" name="title" placeholder="Digite o título da vaga" required>
-          <small id="titleHelp" class="form-text text-muted">O título é muito importante, seja claro e objetivo.</small>
-        </div>
-        <div class="form-group">
-          <label for="description">Descrição da vaga:</label>
-          <textarea type="text" class="form-control" id="description" name="description" placeholder="Descreva as atividades do desenvolvedor..." required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="company">Empresa contratante:</label>
-          <input type="text" class="form-control" id="company" name="company" placeholder="Digite a empresa que vai contratar" required>
-        </div>
-        <div class="form-group">
-          <label for="email">E-mail para contato:</label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail para contato" required>
-        </div>
-        <div class="form-group">
-          <label for="salary">Salário oferecido:</label>
-          <input type="text" class="form-control" id="salary" name="salary" placeholder="Digite o Salário da vaga" required>
-        </div>
-        <input type="hidden" name="new_job" value="1">
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
-    </div>
+<div class="container mx-auto px-4 py-16">
+  <h1 class="text-3xl font-bold text-center mb-8">
+    Divulgue a vaga preenchendo o formulário
+  </h1>
+
+  <div class="max-w-3xl mx-auto bg-gray-800 p-8 rounded">
+    <h2 class="text-xl font-semibold mb-6">
+      Preencha os dados da melhor forma possível para encontrar mais rápido seu dev!
+    </h2>
+
+    <form action="/jobs/add" method="POST" class="space-y-4">
+      <div>
+        <label for="title" class="block text-sm font-semibold mb-1">Título da vaga:</label>
+        <input
+          type="text"
+          class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-100 placeholder-gray-400 focus:outline-none"
+          id="title"
+          name="title"
+          placeholder="Digite o título da vaga"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="description" class="block text-sm font-semibold mb-1">Descrição da vaga:</label>
+        <textarea
+          class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-100 placeholder-gray-400 focus:outline-none"
+          id="description"
+          name="description"
+          placeholder="Descreva as atividades do desenvolvedor..."
+          required
+        ></textarea>
+      </div>
+
+      <div>
+        <label for="company" class="block text-sm font-semibold mb-1">Empresa contratante:</label>
+        <input
+          type="text"
+          class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-100 placeholder-gray-400 focus:outline-none"
+          id="company"
+          name="company"
+          placeholder="Digite a empresa que vai contratar"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-semibold mb-1">E-mail para contato:</label>
+        <input
+          type="email"
+          class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-100 placeholder-gray-400 focus:outline-none"
+          id="email"
+          name="email"
+          placeholder="Digite o e-mail para contato"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="salary" class="block text-sm font-semibold mb-1">Salário oferecido:</label>
+        <input
+          type="text"
+          class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-100 placeholder-gray-400 focus:outline-none"
+          id="salary"
+          name="salary"
+          placeholder="Digite o Salário da vaga"
+          required
+        />
+      </div>
+
+      <input type="hidden" name="new_job" value="1" />
+
+      <button
+        type="submit"
+        class="bg-blue-600 hover:bg-blue-500 text-white rounded px-4 py-2 font-bold transition"
+      >
+        Enviar
+      </button>
+    </form>
   </div>
 </div>

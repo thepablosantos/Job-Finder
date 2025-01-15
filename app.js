@@ -1,32 +1,28 @@
 const express = require('express');
 const { create } = require('express-handlebars');
-const app = express();
 const path = require('path');
-const db = require('./db/connection');
 const bodyParser = require('body-parser');
+const db = require('./db/connection');
 const Job = require('./models/Job');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
+const app = express();
 const PORT = 3000;
 
-app.listen(PORT, function() {
-  console.log(`O Express está rodando na porta ${PORT}`);
-});
-
-// body parser
+// Body Parser
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// handle bars
+// Template Engine (Handlebars)
 const hbs = create({ defaultLayout: 'main' });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
-// static folder
+// Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// db connection
+// DB connection
 db
   .authenticate()
   .then(() => {
@@ -36,35 +32,36 @@ db
     console.log("Ocorreu um erro ao conectar", err);
   });
 
-// routes
+// Routes
 app.get('/', (req, res) => {
   let search = req.query.job;
-  let query = '%' + search + '%'; // PH -> PHP, Word -> Wordpress, press -> Wordpress
+  let query = '%' + search + '%';
 
   if (!search) {
     Job.findAll({
       order: [['createdAt', 'DESC']],
     })
       .then((jobs) => {
-        res.render('index', {
-          jobs,
-        });
+        res.render('index', { jobs });
       })
       .catch((err) => console.log(err));
   } else {
     Job.findAll({
-      where: { title: { [Op.like]: query } },
+      where: {
+        title: { [Op.like]: query }
+      },
       order: [['createdAt', 'DESC']],
     })
       .then((jobs) => {
-        res.render('index', {
-          jobs,
-          search,
-        });
+        res.render('index', { jobs, search });
       })
       .catch((err) => console.log(err));
   }
 });
 
-// jobs routes
+// Jobs Routes
 app.use('/jobs', require('./routes/jobs'));
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
