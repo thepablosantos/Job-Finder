@@ -56,7 +56,7 @@ By default, we use a local SQLite file (app.db). Check db/connection.js if you w
 5.	**Run the development server**
     ```bash
     npm run dev
-or
+    or
     ```bash
     node app.js
 
