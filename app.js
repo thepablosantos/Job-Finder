@@ -1,38 +1,41 @@
 const express = require('express');
-const exphbs = require('express-handlebars');
+const { create } = require('express-handlebars');
 const app = express();
 const path = require('path');
 const db = require('./db/connection');
 const bodyParser = require('body-parser');
-
 const PORT = 3000;
 
-app.listen(PORT, function() {
-    console.log(`O Express está rodando na porta ${PORT}`);
+// Configuração do servidor
+app.listen(PORT, function () {
+  console.log(`O Express está rodando na porta ${PORT}`);
 });
 
-// body parser
-app.use(bodyParser.urlencoded({ extended: false}));
+// Body Parser
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// handle bars
-app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+// Configuração do Handlebars
+const hbs = create({ defaultLayout: 'main' }); // Para compatibilidade com a versão 8.x do express-handlebars
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'views'));
 
-// db connection
-db 
-    .authenticate()
-    .then(() => {
-        console.log("Conectou ao banco com sucesso");
-    })
-    .catch(err => {
-        console.log("Ocorreu um erro ao conectar", err);
-    });
+// Configuração da pasta de arquivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
 
-//routes
+// Conexão com o banco de dados
+db.authenticate()
+  .then(() => {
+    console.log('Conectou ao banco com sucesso');
+  })
+  .catch((err) => {
+    console.log('Ocorreu um erro ao conectar', err);
+  });
+
+// Rota principal
 app.get('/', (req, res) => {
-    res.send("Está funcionando 2");
+  res.render('index');
 });
 
-// jobs routes
+// Rotas de jobs
 app.use('/jobs', require('./routes/jobs'));
