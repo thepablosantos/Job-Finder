@@ -2,8 +2,6 @@
 
 Discover top developer jobs and explore **Web3** capabilities. Built using **Node.js**, **Express**, **SQLite**, **Sequelize**, and **Tailwind CSS**. Connect your wallet (via Metamask) and take advantage of potential crypto payments or blockchain integrations.
 
-[View Demo](#) • [Report Bug](#) • [Request Feature](#)
-
 ---
 
 ## About The Project
