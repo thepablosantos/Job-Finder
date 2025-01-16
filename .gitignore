@@ -1,5 +1,3 @@
 node_modules/
-screenshot.png/
-index.html/
-package.json/
-package-lock.json/
+screenshot.png
+package-lock.json
