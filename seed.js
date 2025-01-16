@@ -4,7 +4,7 @@ const Job = require('./models/Job');
 
 async function seed() {
   try {
-    await db.sync({ force: true }); // Apaga e recria as tabelas
+    await db.sync({ force: true });
 
     // Insere vagas relacionadas a Web3
     await Job.create({
